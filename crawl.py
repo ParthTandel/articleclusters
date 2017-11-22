@@ -6,7 +6,7 @@ import csv
 import re
 import datetime
 import pymongo
-
+import os
 client = pymongo.MongoClient()
 db = client.projectdb   # database named test_database
 collection = db.articles    # collection named articles
@@ -17,7 +17,13 @@ try:
 except Exception:
     count = 0
 
-with open('rss.csv', 'rb') as csvfile:
+
+filename = os.path.join(os.path.dirname(__file__), 'rss.csv')
+
+
+print filename
+
+with open(filename, 'rb') as csvfile:
     rssfeeds = csv.reader(csvfile, delimiter=',', quotechar='"')
     for row in rssfeeds:
         link = row[2]
