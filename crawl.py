@@ -21,8 +21,6 @@ except Exception:
 filename = os.path.join(os.path.dirname(__file__), 'rss.csv')
 
 
-print filename
-
 with open(filename, 'rb') as csvfile:
     rssfeeds = csv.reader(csvfile, delimiter=',', quotechar='"')
     for row in rssfeeds:
@@ -34,12 +32,10 @@ with open(filename, 'rb') as csvfile:
                 response = urllib2.urlopen(newsitem['links'][0]['href'])
                 html = response.read()
                 soup = BeautifulSoup(html, 'html.parser')
-
                 for script in soup.find_all('script'):
                     script.extract()
                 for script in soup.find_all('style'):
                     script.extract()
-
                 data_dict = {
                     "count" : count,
                     "date"  : datetime.datetime.now().strftime("%y-%m-%d"),

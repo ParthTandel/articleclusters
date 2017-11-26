@@ -1,4 +1,5 @@
 stopwords = [
+"More",
 "@",
 "&",
 "\xa9",
