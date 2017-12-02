@@ -1,0 +1,14 @@
+/mongo
+.Rhistory
+check.json
+check1.json
+deerwester.mm
+deerwester.mm.index
+deerwester.dict
+*.pyc
+feeder_r.R
+gensim_test.py
+test.py
+feedfinder.py
+test1.py
+/python-boilerpipe

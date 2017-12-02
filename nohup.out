@@ -1,0 +1,102 @@
+Error parsing command line: unrecognised option '--dbpath'
+try 'mongo --help' for more information
+2017-11-27T19:43:12.876-0500 I CONTROL  [initandlisten] MongoDB starting : pid=3016 port=27017 dbpath=mongo/ 64-bit host=Notebook-X
+2017-11-27T19:43:12.876-0500 I CONTROL  [initandlisten] db version v3.4.10
+2017-11-27T19:43:12.876-0500 I CONTROL  [initandlisten] git version: 078f28920cb24de0dd479b5ea6c66c644f6326e9
+2017-11-27T19:43:12.876-0500 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.2g  1 Mar 2016
+2017-11-27T19:43:12.877-0500 I CONTROL  [initandlisten] allocator: tcmalloc
+2017-11-27T19:43:12.877-0500 I CONTROL  [initandlisten] modules: none
+2017-11-27T19:43:12.877-0500 I CONTROL  [initandlisten] build environment:
+2017-11-27T19:43:12.877-0500 I CONTROL  [initandlisten]     distmod: ubuntu1604
+2017-11-27T19:43:12.877-0500 I CONTROL  [initandlisten]     distarch: x86_64
+2017-11-27T19:43:12.877-0500 I CONTROL  [initandlisten]     target_arch: x86_64
+2017-11-27T19:43:12.877-0500 I CONTROL  [initandlisten] options: { storage: { dbPath: "mongo/" } }
+2017-11-27T19:43:12.877-0500 W -        [initandlisten] Detected unclean shutdown - mongo/mongod.lock is not empty.
+2017-11-27T19:43:12.899-0500 I -        [initandlisten] Detected data files in mongo/ created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2017-11-27T19:43:12.899-0500 W STORAGE  [initandlisten] Recovering data from the last clean checkpoint.
+2017-11-27T19:43:12.899-0500 I STORAGE  [initandlisten] 
+2017-11-27T19:43:12.899-0500 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2017-11-27T19:43:12.899-0500 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2017-11-27T19:43:12.899-0500 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=3446M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+2017-11-27T19:43:13.105-0500 I CONTROL  [initandlisten] 
+2017-11-27T19:43:13.105-0500 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2017-11-27T19:43:13.105-0500 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2017-11-27T19:43:13.105-0500 I CONTROL  [initandlisten] 
+2017-11-27T19:43:13.105-0500 I CONTROL  [initandlisten] 
+2017-11-27T19:43:13.105-0500 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'.
+2017-11-27T19:43:13.105-0500 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+2017-11-27T19:43:13.105-0500 I CONTROL  [initandlisten] 
+2017-11-27T19:43:13.105-0500 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/defrag is 'always'.
+2017-11-27T19:43:13.105-0500 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+2017-11-27T19:43:13.105-0500 I CONTROL  [initandlisten] 
+2017-11-27T19:43:13.118-0500 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory 'mongo/diagnostic.data'
+2017-11-27T19:43:13.118-0500 I NETWORK  [thread1] waiting for connections on port 27017
+2017-11-27T19:43:14.029-0500 I FTDC     [ftdc] Unclean full-time diagnostic data capture shutdown detected, found interim file, some metrics may have been lost. OK
+2017-11-27T19:43:18.358-0500 I NETWORK  [thread1] connection accepted from 127.0.0.1:45466 #1 (1 connection now open)
+2017-11-27T19:43:18.358-0500 I NETWORK  [conn1] received client metadata from 127.0.0.1:45466 conn1: { application: { name: "MongoDB Shell" }, driver: { name: "MongoDB Internal Client", version: "3.4.10" }, os: { type: "Linux", name: "LinuxMint", architecture: "x86_64", version: "18" } }
+2017-11-27T19:43:37.278-0500 I NETWORK  [thread1] connection accepted from 127.0.0.1:45468 #2 (2 connections now open)
+2017-11-27T19:43:37.279-0500 I NETWORK  [conn2] received client metadata from 127.0.0.1:45468 conn2: { driver: { name: "PyMongo", version: "3.5.1" }, os: { type: "Linux", name: "LinuxMint 18 sarah", architecture: "x86_64", version: "4.4.0-78-generic" }, platform: "CPython 2.7.12.final.0" }
+2017-11-27T19:43:37.280-0500 I NETWORK  [thread1] connection accepted from 127.0.0.1:45470 #3 (3 connections now open)
+2017-11-27T19:43:37.280-0500 I NETWORK  [conn3] received client metadata from 127.0.0.1:45470 conn3: { driver: { name: "PyMongo", version: "3.5.1" }, os: { type: "Linux", name: "LinuxMint 18 sarah", architecture: "x86_64", version: "4.4.0-78-generic" }, platform: "CPython 2.7.12.final.0" }
+2017-11-27T19:43:45.913-0500 I -        [conn3] end connection 127.0.0.1:45470 (3 connections now open)
+2017-11-27T19:43:45.913-0500 I -        [conn2] end connection 127.0.0.1:45468 (3 connections now open)
+2017-11-27T19:49:50.248-0500 I NETWORK  [thread1] connection accepted from 127.0.0.1:45472 #4 (2 connections now open)
+2017-11-27T19:49:50.248-0500 I NETWORK  [conn4] received client metadata from 127.0.0.1:45472 conn4: { driver: { name: "PyMongo", version: "3.5.1" }, os: { type: "Linux", name: "LinuxMint 18 sarah", architecture: "x86_64", version: "4.4.0-78-generic" }, platform: "CPython 2.7.12.final.0" }
+2017-11-27T19:49:50.250-0500 I NETWORK  [thread1] connection accepted from 127.0.0.1:45474 #5 (3 connections now open)
+2017-11-27T19:49:50.250-0500 I NETWORK  [conn5] received client metadata from 127.0.0.1:45474 conn5: { driver: { name: "PyMongo", version: "3.5.1" }, os: { type: "Linux", name: "LinuxMint 18 sarah", architecture: "x86_64", version: "4.4.0-78-generic" }, platform: "CPython 2.7.12.final.0" }
+2017-11-27T19:49:58.838-0500 I -        [conn5] end connection 127.0.0.1:45474 (3 connections now open)
+2017-11-27T19:49:58.838-0500 I -        [conn4] end connection 127.0.0.1:45472 (3 connections now open)
+2017-11-27T19:52:56.974-0500 I NETWORK  [thread1] connection accepted from 127.0.0.1:45536 #6 (2 connections now open)
+2017-11-27T19:52:56.975-0500 I NETWORK  [conn6] received client metadata from 127.0.0.1:45536 conn6: { driver: { name: "PyMongo", version: "3.5.1" }, os: { type: "Linux", name: "LinuxMint 18 sarah", architecture: "x86_64", version: "4.4.0-78-generic" }, platform: "CPython 2.7.12.final.0" }
+2017-11-27T19:52:56.975-0500 I NETWORK  [thread1] connection accepted from 127.0.0.1:45538 #7 (3 connections now open)
+2017-11-27T19:52:56.976-0500 I NETWORK  [conn7] received client metadata from 127.0.0.1:45538 conn7: { driver: { name: "PyMongo", version: "3.5.1" }, os: { type: "Linux", name: "LinuxMint 18 sarah", architecture: "x86_64", version: "4.4.0-78-generic" }, platform: "CPython 2.7.12.final.0" }
+2017-11-27T19:53:05.583-0500 I -        [conn6] end connection 127.0.0.1:45536 (3 connections now open)
+2017-11-27T19:53:05.583-0500 I -        [conn7] end connection 127.0.0.1:45538 (3 connections now open)
+2017-11-27T20:20:18.099-0500 I NETWORK  [thread1] connection accepted from 127.0.0.1:45608 #8 (2 connections now open)
+2017-11-27T20:20:18.099-0500 I NETWORK  [conn8] received client metadata from 127.0.0.1:45608 conn8: { driver: { name: "PyMongo", version: "3.5.1" }, os: { type: "Linux", name: "LinuxMint 18 sarah", architecture: "x86_64", version: "4.4.0-78-generic" }, platform: "CPython 2.7.12.final.0" }
+2017-11-27T20:20:18.100-0500 I NETWORK  [thread1] connection accepted from 127.0.0.1:45610 #9 (3 connections now open)
+2017-11-27T20:20:18.100-0500 I NETWORK  [conn9] received client metadata from 127.0.0.1:45610 conn9: { driver: { name: "PyMongo", version: "3.5.1" }, os: { type: "Linux", name: "LinuxMint 18 sarah", architecture: "x86_64", version: "4.4.0-78-generic" }, platform: "CPython 2.7.12.final.0" }
+2017-11-27T20:20:24.699-0500 I -        [conn9] end connection 127.0.0.1:45610 (3 connections now open)
+2017-11-27T20:20:24.699-0500 I -        [conn8] end connection 127.0.0.1:45608 (3 connections now open)
+2017-11-27T20:20:46.201-0500 I NETWORK  [thread1] connection accepted from 127.0.0.1:45612 #10 (2 connections now open)
+2017-11-27T20:20:46.201-0500 I NETWORK  [conn10] received client metadata from 127.0.0.1:45612 conn10: { driver: { name: "PyMongo", version: "3.5.1" }, os: { type: "Linux", name: "LinuxMint 18 sarah", architecture: "x86_64", version: "4.4.0-78-generic" }, platform: "CPython 2.7.12.final.0" }
+2017-11-27T20:20:46.202-0500 I NETWORK  [thread1] connection accepted from 127.0.0.1:45614 #11 (3 connections now open)
+2017-11-27T20:20:46.202-0500 I NETWORK  [conn11] received client metadata from 127.0.0.1:45614 conn11: { driver: { name: "PyMongo", version: "3.5.1" }, os: { type: "Linux", name: "LinuxMint 18 sarah", architecture: "x86_64", version: "4.4.0-78-generic" }, platform: "CPython 2.7.12.final.0" }
+2017-11-27T20:20:52.668-0500 I -        [conn11] end connection 127.0.0.1:45614 (3 connections now open)
+2017-11-27T20:20:52.668-0500 I -        [conn10] end connection 127.0.0.1:45612 (3 connections now open)
+2017-11-27T20:21:13.590-0500 I NETWORK  [thread1] connection accepted from 127.0.0.1:45616 #12 (2 connections now open)
+2017-11-27T20:21:13.590-0500 I NETWORK  [conn12] received client metadata from 127.0.0.1:45616 conn12: { driver: { name: "PyMongo", version: "3.5.1" }, os: { type: "Linux", name: "LinuxMint 18 sarah", architecture: "x86_64", version: "4.4.0-78-generic" }, platform: "CPython 2.7.12.final.0" }
+2017-11-27T20:21:13.591-0500 I NETWORK  [thread1] connection accepted from 127.0.0.1:45618 #13 (3 connections now open)
+2017-11-27T20:21:13.592-0500 I NETWORK  [conn13] received client metadata from 127.0.0.1:45618 conn13: { driver: { name: "PyMongo", version: "3.5.1" }, os: { type: "Linux", name: "LinuxMint 18 sarah", architecture: "x86_64", version: "4.4.0-78-generic" }, platform: "CPython 2.7.12.final.0" }
+2017-11-27T20:21:26.526-0500 I -        [conn12] end connection 127.0.0.1:45616 (3 connections now open)
+2017-11-27T20:21:26.526-0500 I -        [conn13] end connection 127.0.0.1:45618 (3 connections now open)
+2017-11-27T20:28:08.538-0500 I NETWORK  [thread1] connection accepted from 127.0.0.1:45620 #14 (2 connections now open)
+2017-11-27T20:28:08.539-0500 I NETWORK  [conn14] received client metadata from 127.0.0.1:45620 conn14: { driver: { name: "PyMongo", version: "3.5.1" }, os: { type: "Linux", name: "LinuxMint 18 sarah", architecture: "x86_64", version: "4.4.0-78-generic" }, platform: "CPython 2.7.12.final.0" }
+2017-11-27T20:28:08.540-0500 I NETWORK  [thread1] connection accepted from 127.0.0.1:45622 #15 (3 connections now open)
+2017-11-27T20:28:08.540-0500 I NETWORK  [conn15] received client metadata from 127.0.0.1:45622 conn15: { driver: { name: "PyMongo", version: "3.5.1" }, os: { type: "Linux", name: "LinuxMint 18 sarah", architecture: "x86_64", version: "4.4.0-78-generic" }, platform: "CPython 2.7.12.final.0" }
+2017-11-27T20:28:09.107-0500 I -        [conn14] end connection 127.0.0.1:45620 (3 connections now open)
+2017-11-27T20:28:09.107-0500 I -        [conn15] end connection 127.0.0.1:45622 (3 connections now open)
+2017-11-27T20:28:20.228-0500 I NETWORK  [thread1] connection accepted from 127.0.0.1:45624 #16 (2 connections now open)
+2017-11-27T20:28:20.228-0500 I NETWORK  [conn16] received client metadata from 127.0.0.1:45624 conn16: { driver: { name: "PyMongo", version: "3.5.1" }, os: { type: "Linux", name: "LinuxMint 18 sarah", architecture: "x86_64", version: "4.4.0-78-generic" }, platform: "CPython 2.7.12.final.0" }
+2017-11-27T20:28:20.229-0500 I NETWORK  [thread1] connection accepted from 127.0.0.1:45626 #17 (3 connections now open)
+2017-11-27T20:28:20.229-0500 I NETWORK  [conn17] received client metadata from 127.0.0.1:45626 conn17: { driver: { name: "PyMongo", version: "3.5.1" }, os: { type: "Linux", name: "LinuxMint 18 sarah", architecture: "x86_64", version: "4.4.0-78-generic" }, platform: "CPython 2.7.12.final.0" }
+2017-11-27T20:28:20.812-0500 I -        [conn17] end connection 127.0.0.1:45626 (3 connections now open)
+2017-11-27T20:28:20.812-0500 I -        [conn16] end connection 127.0.0.1:45624 (3 connections now open)
+2017-11-27T20:28:35.695-0500 I NETWORK  [thread1] connection accepted from 127.0.0.1:45628 #18 (2 connections now open)
+2017-11-27T20:28:35.695-0500 I NETWORK  [conn18] received client metadata from 127.0.0.1:45628 conn18: { driver: { name: "PyMongo", version: "3.5.1" }, os: { type: "Linux", name: "LinuxMint 18 sarah", architecture: "x86_64", version: "4.4.0-78-generic" }, platform: "CPython 2.7.12.final.0" }
+2017-11-27T20:28:35.696-0500 I NETWORK  [thread1] connection accepted from 127.0.0.1:45630 #19 (3 connections now open)
+2017-11-27T20:28:35.696-0500 I NETWORK  [conn19] received client metadata from 127.0.0.1:45630 conn19: { driver: { name: "PyMongo", version: "3.5.1" }, os: { type: "Linux", name: "LinuxMint 18 sarah", architecture: "x86_64", version: "4.4.0-78-generic" }, platform: "CPython 2.7.12.final.0" }
+2017-11-27T20:28:37.213-0500 I -        [conn19] end connection 127.0.0.1:45630 (3 connections now open)
+2017-11-27T20:28:37.213-0500 I -        [conn18] end connection 127.0.0.1:45628 (3 connections now open)
+2017-11-27T23:43:38.108-0500 I CONTROL  [signalProcessingThread] got signal 15 (Terminated), will terminate after current cmd ends
+2017-11-27T23:43:38.108-0500 I NETWORK  [signalProcessingThread] shutdown: going to close listening sockets...
+2017-11-27T23:43:38.108-0500 I NETWORK  [signalProcessingThread] closing listening socket: 6
+2017-11-27T23:43:38.108-0500 I NETWORK  [signalProcessingThread] closing listening socket: 7
+2017-11-27T23:43:38.108-0500 I NETWORK  [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+2017-11-27T23:43:38.108-0500 I NETWORK  [signalProcessingThread] shutdown: going to flush diaglog...
+2017-11-27T23:43:38.108-0500 I FTDC     [signalProcessingThread] Shutting down full-time diagnostic data capture
+2017-11-27T23:43:38.120-0500 I -        [conn1] end connection 127.0.0.1:45466 (1 connection now open)
+2017-11-27T23:43:38.112-0500 I STORAGE  [signalProcessingThread] WiredTigerKVEngine shutting down
+2017-11-27T23:43:38.188-0500 I STORAGE  [signalProcessingThread] shutdown: removing fs lock...
+2017-11-27T23:43:38.188-0500 I CONTROL  [signalProcessingThread] now exiting
+2017-11-27T23:43:38.189-0500 I CONTROL  [initandlisten] shutting down with code:0
