@@ -8,7 +8,6 @@ library(dplyr)
 
 
 tidyData <- function (pythonpath, type, pos_array, additionalStopwords) {
-  spacy_initialize(python_executable=pythonpath)
   my_collection = mongo(collection = "articles", db = "projectfinal_db")
   data <- my_collection$find(paste0('{"type":"',type,'"}'),
                              fields = '{"_id":0, "link":1, "refinedtext":1}')
@@ -17,31 +16,27 @@ tidyData <- function (pythonpath, type, pos_array, additionalStopwords) {
   parsedtxt <- spacy_parse(data_asfact)
   topic_parsed <- filter(parsedtxt, pos %in% pos_array)
   topic_parsed <-rename(topic_parsed, word = token)
+
   topic_parsed<- topic_parsed %>%
     anti_join(stop_words)
   
-  topic_parsed<- topic_parsed %>%
+ topic_parsed<- topic_parsed %>%
     anti_join(additionalStopwords)
   
-  return(topic_parsed)
+  topic_parsed <- filter(topic_parsed, !grepl("[^0-9A-Za-z///']",word))
+  text <- topic_parsed %>%
+    group_by(doc_id) %>%
+    summarise(text=paste(word,collapse=' '))
+  
+  return(text)
 }
 
-pos_array = c("ADJ", "NOUN", "VERB")
-addi <- data.frame( word=c("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^", "\'", "_",
-                           "\"", "will", "'s"))
-topic_parsed <- tidyData('/home/parth/tensorflow/bin/python', "Entertainment", pos_array, addi)
-                                     
+spacy_initialize(python_executable=pythonpath)
 
-
-
-
-
-
-data_text <- topic_parsed %>%
-  group_by(doc_id) %>%
-  summarise(text=paste(word,collapse=' '))
-
-
+pos_array = c("NOUN")
+entertainment_stops <- data.frame( word=c("will", "image"))
+sports_stops <- data.frame(word= c("game", "season", "play", "time", "coach", "week", "team", "day"))
+data_text <- tidyData('/home/parth/tensorflow/bin/python', "Sports", pos_array, sports_stops)
 
 docs <- Corpus(VectorSource(data_text$text))
 docs <-tm_map(docs,content_transformer(tolower))
