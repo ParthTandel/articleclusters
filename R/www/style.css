@@ -1,0 +1,16 @@
+.node {
+      font: 15px sans-serif;
+}
+.link {
+       fill: none;
+       stroke: #ccc;
+       stroke-width: 1.5px;
+}
+.node circle {
+        fill: #fff;
+		transition:0s 0.05s;
+}
+.node circle:hover {
+        fill: #FF0000;
+		transition: 0s;
+}

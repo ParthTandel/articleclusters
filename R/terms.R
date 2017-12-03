@@ -6,6 +6,9 @@ library(tm)
 library(topicmodels)
 library(dplyr)
 library(gridExtra)
+library(ggrepel)
+library(wordcloud)
+
 
 
 
@@ -99,106 +102,97 @@ ui <- fluidPage(
         selectInput("selection", "Category:",
                     choices = category),
         hr(),
+
+
         sliderInput("k",
                     "Number of Topics:",
-                    min = 1,  max = 10, value = 7)
+                    min = 1,  max = 10, value = 7),
 
+        uiOutput("slider"),
 
+        # sliderInput("topic_sec",
+        #             "Topic selected:",
+        #             min = 1,  max = 10, value = 7),
+
+        sliderInput("numword",
+                  "Number of words",
+                  min = 5,  max = 50, value = 10)
       ),
+      plotOutput("plot", click = "plot_click")
 
-      # Show Word Cloud
-      # plotOutput("plot", click = "plot_click")
-      #
-      conditionalPanel("values.show",
-          plotOutput("plot", click = "plot_click")
-      )
+      # conditionalPanel("values.show",
+      #     plotOutput("plot", click = "plot_click")
+      # )
 
     )
   )
 
 
-server <- function(input, output) {
+server <- function(input, output, session) {
+#
+#   values <- reactiveValues()
+#   values$show <- FALSE
+#
 
-  values <- reactiveValues()
-  values$show <- FALSE
+  output$slider <- renderUI({
+    sliderInput(inputId = "topic_sec", label = "Current topic", min = 0, max = input$k, value = 1, step = 1)
+  })
 
   processed_data <- reactive({
 
-  pos_array = c("NOUN")
-  entertainment_stops <- data.frame( word=c("will", "image"))
-  sports_stops <- data.frame(word= c("game", "season", "play", "time",
-                                     "coach", "week", "team", "day",
-                                     "photos", "games", "sports", "night",
-                                     "times", "story", "newsletter", "sport",
-                                     "player", "players", "photo", "half",
-                                     "teams", "ball","hall"))
-  print("topic started")
-  topic_parsed <- tidyData('/home/parth/tensorflow/bin/python', input$selection, pos_array, sports_stops)
-  print("spacy parsed")
+    pos_array = c("NOUN")
+    entertainment_stops <- data.frame( word=c("will", "image"))
+    sports_stops <- data.frame(word= c("game", "season", "play", "time",
+                                       "coach", "week", "team", "day",
+                                       "photos", "games", "sports", "night",
+                                       "times", "story", "newsletter", "sport",
+                                       "player", "players", "photo", "half",
+                                       "teams", "ball","hall"))
+    print("topic started")
+    topic_parsed <- tidyData('/home/parth/tensorflow/bin/python', input$selection, pos_array, sports_stops)
+    print("spacy parsed")
 
-  data_text <- topic_parsed %>%
-    group_by(doc_id) %>%
-    summarise(text=paste(word,collapse=' '))
+    data_text <- topic_parsed %>%
+      group_by(doc_id) %>%
+      summarise(text=paste(word,collapse=' '))
 
-  lda_res <- generate_Clusters(data_text, input$k)
-  return(lda_res)
+    lda_res <- generate_Clusters(data_text, input$k)
+    return(lda_res)
   })
 
-
+  # wordcloud_rep <- repeatable(wordcloud)
 
   output$plot <- renderPlot({
 
     lda_res <- processed_data()
+    wordcloud_rep <- repeatable(wordcloud)
     ap_topics <- tidy(lda_res, matrix = "beta")
+
     ap_top_terms <- ap_topics %>%
-      group_by(topic) %>%
-      top_n(10, beta) %>%
+      filter(topic == input$topic_sec) %>%
+      top_n(input$numword, beta) %>%
       ungroup() %>%
       arrange(topic, -beta)
 
 
+    set.seed(1234)
+    wordcloud(words = ap_top_terms$term, freq = 1000*ap_top_terms$beta, min.freq = 1,
+          max.words=200, random.order=FALSE, rot.per=0.35,
+          colors=brewer.pal(8, "Dark2"))
 
-    ap_top_terms %>%
-      mutate(term = reorder(term, beta)) %>%
-      ggplot(aes(term, beta, fill = factor(topic))) +
-      geom_col(show.legend = FALSE) +
-      facet_wrap(~ topic, scales = "free", nrow = NULL, ncol = 2) +
-      coord_flip() +
-      theme(axis.title.y = element_text(size=18,face="bold"),
-            axis.text.x = element_text(size=18,face="bold"),
-            axis.text.y = element_text(size=18,face="bold"),
-            axis.title.x = element_text(size=18,face="bold"))
-
-    # g2 <- ap_documents <- tidy(lda_res, matrix = "gamma")
-    # ap_documents
-    # ap_documents %>%
-    #  group_by(topic) %>%
-    #  filter(gamma > 0.99) %>%
-    #  ggplot() +
-    #  geom_bar(mapping = aes(x=topic)) +
-    #  theme(axis.title.y = element_text(size=18,face="bold"),
-    #        axis.text.x = element_text(size=18,face="bold"),
-    #        axis.text.y = element_text(size=18,face="bold"),
-    #        axis.title.x = element_text(size=18,face="bold"))
-    #
-    #  if(values$show == TRUE)
-    #  {
-    #    grid.arrange(g1,g2)
-    #  } else {
-    #    grid.arrange(g1)
-    #  }
+    # ap_top_terms %>%
+    #   mutate(term = reorder(term, beta)) %>%
+    #   ggplot(aes(term, beta, fill = factor(topic))) +
+    #   geom_col(show.legend = FALSE) +
+    #   facet_wrap(~ topic, scales = "free", nrow = NULL, ncol = 2) +
+    #   coord_flip() +
+    #   theme(axis.title.y = element_text(size=18,face="bold"),
+    #         axis.text.x = element_text(size=18,face="bold"),
+    #         axis.text.y = element_text(size=18,face="bold"),
+    #         axis.title.x = element_text(size=18,face="bold"))
 
     }, height = 900, width = 800)
 
-  output$show <- reactive({
-    return(values$show)
-  })
-
-  observeEvent(input$plot_click, {
-      print(values$show)
-      values$show  = !values$show
-  })
 }
-
 
 runApp(list(ui=ui, server=server))
