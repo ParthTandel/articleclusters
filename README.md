@@ -1,2 +1,2 @@
 # articleclusters
-Clustering like articles
+Clustering News articles using Topic Modeling
