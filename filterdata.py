@@ -1,35 +1,27 @@
 import pymongo
 import re
-import urllib2
-import httplib
-import spacy
 from newspaper import Article
 from pymongo import MongoClient
-from boilerpipe.extract import Extractor
-nlp = spacy.load('en')
 from stopword_rm import stopwords
 
-client = pymongo.MongoClient()
+# connecting to ec2 mongodb
+client = pymongo.MongoClient("ec2-18-223-123-230.us-east-2.compute.amazonaws.com")
 db = client.projectdb   # database named test_database
 collection = db.articles    # collection named articles
 
 
-final_db = client.projectfinal_db   # database named test_database
-final_collection = final_db.articles    # collection named articles
-
-
+cleaned_db = client.projectclean_db   # database named test_database
+final_collection = cleaned_db.articles    # collection named articles
 
 try:
     count = final_collection.find({}).sort([('$natural',pymongo.DESCENDING)]).limit(1)[0]["count"]
 except Exception:
     count = 1
 
-
-
-data  = collection.find({"type":"Sports"})
+data  = collection.find()
 
 for article in data:
-    print "********************************************************************"
+    print("********************************************************************")
     a = Article(article["link"])
     a.download()
     a.parse()
@@ -38,7 +30,8 @@ for article in data:
     new_arr = []
 
     for val in text_array:
-        if val.count("Photos:") > 0 or val.count("Chat with us in Facebook Messenger") > 0 or val.count("Read or Share this story:") > 0 or val.count("entertainment.news@bbc.co.uk") > 0 or val.count("newstips.usatoday.com") > 0:
+        if val.count("Photos:") > 0 or val.count("Chat with us in Facebook Messenger") > 0 or val.count("Read or Share this story:") > 0 or \
+           val.count("entertainment.news@bbc.co.uk") > 0 or val.count("newstips.usatoday.com") > 0:
             continue
         new_arr.append(val)
 
@@ -59,6 +52,6 @@ for article in data:
     article["refinedtext"] = " ".join(article_tokens)
     article["count"] = count
     if len( article_tokens ) > 150:
-        print final_collection.insert_one(article).inserted_id,article["link"]
+        print (final_collection.insert_one(article).inserted_id,article["link"])
         count = count + 1
-    print "********************************************************************"
+    print ("********************************************************************")
